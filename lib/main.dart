@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './firstPage.dart' as first_page;
+import './secondPage.dart' as second_page;
 
 void main() {
   runApp(const MyApp());
@@ -7,14 +9,15 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sparky',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      home: const MyHomePage(title: 'Tasks'),
+    return const MaterialApp(
+        title: 'Lovers',
+        home: Center(
+          child: MyHomePage(title: 'Lovers'),
+        )
+
     );
   }
 }
@@ -28,112 +31,39 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _ListView extends StatelessWidget {
-  const _ListView({Key? key}) : super(key: key);
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  late TabController myController;
 
   @override
-  Widget build(BuildContext context) {
-    final Map items = {
-      'task1': 'task1 desc',
-      'task2': 'task2 desc',
-      'task3': 'task3 desc',
-      'task4': 'task4 desc',
-      'task5': 'task5 desc',
-      'task6': 'task6 desc',
-      'task7': 'task7 desc',
-      'task8': 'task8 desc',
-      'task9': 'task9 desc',
-      'task10': 'task10 desc',
-      'task11': 'task11 desc',
-      'task12': 'task12 desc',
-      'task13': 'task13 desc',
-    };
-
-    return ListView.builder(
-      padding: const EdgeInsets.all(4.0),
-      itemCount: items.length,
-      itemBuilder: (context, i) {
-        String key = items.keys.elementAt(i);
-        return SizedBox(
-          width: 150,
-          height: 150,
-          child: Card(
-            color: Colors.white60,
-            child: ListTile(
-              title: Text(key),
-              subtitle: Text(items[key].toString(),
-                  style: const TextStyle(
-                      fontStyle: FontStyle.italic, color: Colors.pink)),
-              leading: const Icon(Icons.control_point),
-            ),
-          ),
-        );
-      },
-    );
+  void initState() {
+    super.initState();
+    myController = TabController(length: 2, vsync: this);
   }
-}
 
-class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void dispose() {
+    myController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Center(child: Text(widget.title)),
+          backgroundColor: Colors.teal,
+          bottom: TabBar(
+            controller: myController,
+            tabs: const [
+              Tab(icon: Icon(Icons.checklist), text: 'Taches'),
+              Tab(icon: Icon(Icons.share), text: 'invités'),
+            ],
+          ),
         ),
-        // body: const _ListView());
-        body: const _MainTask());
-  }
-}
-
-/*
-Future deleteDialog(BuildContext context) {
-  return showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(true);
-              },
-              child: const Text('Yes'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              child: const Text('No'),
-            )
-          ],
-        );
-      });
-}
-*/
-
-class _MainTask extends StatelessWidget {
-  const _MainTask({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-            child: Container(
-              height: 150,
-              width: 412,
-              decoration: const BoxDecoration(
-                color: Colors.indigo,
-              ),
-            )),
-        const Positioned(
-            top: 40,
-            left: 20,
-            child: Text('Sparky', style: TextStyle(fontSize: 30))),
-        const Positioned(
-          child: _ListView(),
-        )
-      ],
-    );
+        body: TabBarView(controller: myController, children: const [
+          first_page.FirstPage(),
+          second_page.SecondPage(),
+        ]));
   }
 }
