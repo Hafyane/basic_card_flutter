@@ -54,13 +54,18 @@ class _ListView extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (context, i) {
         String key = items.keys.elementAt(i);
-        return Card(
-          child: ListTile(
-            title: Text(key),
-            subtitle: Text(items[key].toString(),
-                style: const TextStyle(
-                    fontStyle: FontStyle.italic, color: Colors.pink)),
-            leading: const Icon(Icons.control_point),
+        return SizedBox(
+          width: 150,
+          height: 150,
+          child: Card(
+            color: Colors.white60,
+            child: ListTile(
+              title: Text(key),
+              subtitle: Text(items[key].toString(),
+                  style: const TextStyle(
+                      fontStyle: FontStyle.italic, color: Colors.pink)),
+              leading: const Icon(Icons.control_point),
+            ),
           ),
         );
       },
@@ -75,10 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Center(child: Text(widget.title)),
         ),
-        body: const _ListView());
+        // body: const _ListView());
+        body: const _MainTask());
   }
 }
 
+/*
 Future deleteDialog(BuildContext context) {
   return showDialog(
       context: context,
@@ -101,4 +108,32 @@ Future deleteDialog(BuildContext context) {
           ],
         );
       });
+}
+*/
+
+class _MainTask extends StatelessWidget {
+  const _MainTask({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+            child: Container(
+              height: 150,
+              width: 412,
+              decoration: const BoxDecoration(
+                color: Colors.indigo,
+              ),
+            )),
+        const Positioned(
+            top: 40,
+            left: 20,
+            child: Text('Sparky', style: TextStyle(fontSize: 30))),
+        const Positioned(
+          child: _ListView(),
+        )
+      ],
+    );
+  }
 }
