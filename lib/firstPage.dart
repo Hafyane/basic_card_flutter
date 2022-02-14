@@ -22,7 +22,7 @@ class FirstPage extends StatelessWidget {
     };
     return ListView.builder(
       padding: const EdgeInsets.all(4.0),
-      itemCount: items.length,
+      itemCount: items == null ? 0 : items.length,
       itemBuilder: (context, i) {
         String key = items.keys.elementAt(i);
         return SizedBox(
