@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({Key? key}) : super(key: key);
+class TasksPage extends StatelessWidget {
+  const TasksPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class FirstPage extends StatelessWidget {
     };
     return ListView.builder(
       padding: const EdgeInsets.all(4.0),
-      itemCount: items == null ? 0 : items.length,
+      itemCount: items.length,
       itemBuilder: (context, i) {
         String key = items.keys.elementAt(i);
         return SizedBox(
