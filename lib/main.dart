@@ -4,24 +4,24 @@ import 'package:flutter/material.dart';
 import './inviteMemberPage.dart' as invite_member_page;
 import './tasksPage.dart' as tasks_page;
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-        title: 'Lovers',
-        home: Center(
-          //child: MyHomePage(title: 'Lovers'),
-          child: HomePage(),
-        ));
-  }
-}
+// void main() {
+//   runApp(const MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//         title: 'Lovers',
+//         home: Center(
+//           //child: MyHomePage(title: 'Lovers'),
+//           child: HomePage(),
+//         ));
+//   }
+// }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);

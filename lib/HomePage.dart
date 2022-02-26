@@ -1,5 +1,26 @@
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+        title: 'Lovers',
+        home: Center(
+          //child: MyHomePage(title: 'Lovers'),
+          child: HomePage(),
+        ));
+  }
+}
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -41,12 +62,7 @@ class _HomePageState extends State<HomePage> {
               ),
               // const SizedBox(height: 80.0),
               GestureDetector(
-                onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const MyApp()),
-                  // );
-                },
+                behavior: HitTestBehavior.translucent,
                 child: Container(
                   padding: const EdgeInsets.only(
                       top: 400.0, right: 15.0, left: 15.0),
@@ -82,6 +98,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+                onTap: () => {
+                  goTasksPage()
+                },
               ),
               Container(
                 padding:
@@ -125,7 +144,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-// void goTasksPage() {
-//   //Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MyApp()));
-// }
+void goTasksPage() {
+  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Sparky')));
+}
 }
