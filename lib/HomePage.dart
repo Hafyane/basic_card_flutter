@@ -34,7 +34,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: [
-          Stack(
+          Expanded(
+              child: ListView(
             children: [
               Container(
                 padding: const EdgeInsets.fromLTRB(15.0, 75.0, 0.0, 0.0),
@@ -44,107 +45,112 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.fromLTRB(15.0, 130.0, 0.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
                 child: const Text(
                   'Planner',
                   style: TextStyle(fontSize: 70.0, fontWeight: FontWeight.bold),
                 ),
               ),
+              // Container(
+              //   padding: const EdgeInsets.fromLTRB(250.0, 0.0, 0.0, 0.0),
+              //   child: const Text(
+              //     '.',
+              //     style: TextStyle(
+              //         fontSize: 100.0,
+              //         fontWeight: FontWeight.bold,
+              //         color: Colors.green),
+              //   ),
+              // ),
               Container(
-                padding: const EdgeInsets.fromLTRB(250.0, 110.0, 0.0, 0.0),
-                child: const Text(
-                  '.',
-                  style: TextStyle(
-                      fontSize: 100.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green),
-                ),
-              ),
-              // const SizedBox(height: 80.0),
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                child: Container(
-                  padding: const EdgeInsets.only(
-                      top: 400.0, right: 15.0, left: 15.0),
-                  //height: 60.0,
-                  color: Colors.transparent,
-                  child: Container(
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.black,
-                            style: BorderStyle.solid,
-                            width: 1.0),
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(20.0)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Center(
-                          child: ImageIcon(
-                              AssetImage('assets/icons/facebook.png')),
-                        ),
-                        SizedBox(width: 30.0),
-                        Center(
-                          child: Text(
-                            'Log in with Facebook',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Montserrat',
-                                fontSize: 16.0),
+                color: Colors.transparent,
+                child: GestureDetector(
+                  onTap: () => goTasksPrincipal(),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 230, right: 10, left: 10),
+                    child: Container(
+                      height: 60.0,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 1.0),
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Center(
+                            child: ImageIcon(
+                                AssetImage('assets/icons/facebook.png')),
                           ),
-                        )
-                      ],
+                          SizedBox(width: 30.0),
+                          Center(
+                            child: Text(
+                              'Log in with Facebook',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 16.0),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                onTap: () => {
-                  goTasksPage()
-                },
               ),
               Container(
-                padding:
-                    const EdgeInsets.only(top: 480.0, right: 15.0, left: 15.0),
-
-                //height: 60.0,
                 color: Colors.transparent,
-                child: Container(
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Colors.black,
-                          style: BorderStyle.solid,
-                          width: 1.0),
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Center(
-                        child: ImageIcon(AssetImage('assets/icons/google.png')),
+                child: GestureDetector(
+                  onTap: () => goTasksPage(),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                    child: Container(
+                      height: 60.0,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 1.0),
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Center(
+                            child: ImageIcon(
+                                AssetImage('assets/icons/google.png')),
+                          ),
+                          SizedBox(width: 30.0),
+                          Center(
+                            child: Text(
+                              'Log in with Google',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 16.0),
+                            ),
+                          )
+                        ],
                       ),
-                      SizedBox(width: 30.0),
-                      Center(
-                        child: Text(
-                          'Log in with Google',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat',
-                              fontSize: 16.0),
-                        ),
-                      )
-                    ],
+                    ),
                   ),
                 ),
               ),
             ],
-          )
+          )),
         ],
       ),
     );
   }
 
-void goTasksPage() {
-  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Sparky')));
-}
+  void goTasksPage() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const MyHomePage(title: 'Sparky')));
+  }
+
+  void goTasksPrincipal() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const MyHomePage(title: 'Sparky')));
+  }
 }

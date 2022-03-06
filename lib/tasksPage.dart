@@ -1,3 +1,4 @@
+import 'package:app_emulator_redfactor/newTaskPage.dart';
 import 'package:flutter/material.dart';
 
 class TasksPage extends StatelessWidget {
@@ -20,26 +21,40 @@ class TasksPage extends StatelessWidget {
       'task12': 'task12 desc',
       'task13': 'task13 desc',
     };
-    return ListView.builder(
-      padding: const EdgeInsets.all(4.0),
-      itemCount: items.length,
-      itemBuilder: (context, i) {
-        String key = items.keys.elementAt(i);
-        return SizedBox(
-          width: 150,
-          height: 150,
-          child: Card(
-            color: Colors.white60,
-            child: ListTile(
-              title: Text(key),
-              subtitle: Text(items[key].toString(),
-                  style: const TextStyle(
-                      fontStyle: FontStyle.italic, color: Colors.pink)),
-              leading: const Icon(Icons.control_point),
-            ),
-          ),
-        );
-      },
-    );
+    return Scaffold(
+        body: ListView.builder(
+          padding: const EdgeInsets.all(4.0),
+          itemCount: items.length,
+          itemBuilder: (context, i) {
+            String key = items.keys.elementAt(i);
+            return SizedBox(
+              width: 150,
+              height: 150,
+              child: Card(
+                color: Colors.white60,
+                child: ListTile(
+                  title: Text(key),
+                  subtitle: Text(items[key].toString(),
+                      style: const TextStyle(
+                          fontStyle: FontStyle.italic, color: Colors.pink)),
+                  leading: const Icon(Icons.control_point),
+                ),
+              ),
+            );
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          tooltip: 'Increment',
+          onPressed: () {
+            createTask(context);
+          },
+          child: const Icon(Icons.add),
+          backgroundColor: Colors.teal,
+        ));
+  }
+
+  void createTask(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const NewTask()));
   }
 }
